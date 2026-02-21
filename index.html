@@ -63,7 +63,12 @@
       text-decoration: none;
     }
 
-    .nav-logo svg { height: 34px; width: auto; }
+    .nav-logo-svg {
+      height: 34px;
+      width: auto;
+      display: block;
+      overflow: visible;
+    }
 
     .nav-brand {
       font-family: 'Poppins', sans-serif;
@@ -141,7 +146,12 @@
       margin-bottom: 2.5rem;
       animation: fadeUp .9s ease both;
     }
-    .hero-logo-wrap svg { height: 72px; width: auto; filter: drop-shadow(0 0 20px rgba(255,50,93,.5)); }
+    .hero-logo-svg {
+      height: 72px;
+      width: auto;
+      overflow: visible;
+      filter: drop-shadow(0 0 20px rgba(255,50,93,.5));
+    }
 
     .hero-eyebrow {
       font-size: .75rem;
@@ -487,12 +497,16 @@
     }
 
     /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .hero-logo-svg { height: 56px; }
+    }
+
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .ring-2, .ring-3 { display: none; }
-      .nav-logo svg { height: 24px; }
+      .nav-logo-svg { height: 24px; }
       .hero-logo-wrap { display: flex; justify-content: center; width: 100%; }
-      .hero-logo-wrap svg { height: auto; width: 85%; max-width: 320px; }
+      .hero-logo-svg { height: auto; width: 85%; max-width: 320px; filter: drop-shadow(0 0 14px rgba(255,50,93,.4)); }
       nav { justify-content: center; }
     }
   </style>
@@ -502,7 +516,7 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
-    <svg viewBox="34 63 145 25" xmlns="http://www.w3.org/2000/svg" style="height:34px;width:auto;display:block;overflow:visible;">
+    <svg class="nav-logo-svg" viewBox="34 63 145 25" xmlns="http://www.w3.org/2000/svg">
       <text font-family="Poppins,sans-serif" font-weight="700" font-size="11.29" fill="#f94562" x="37" y="79.47">aldeota</text>
       <path fill="#f94562" d="m 94.994742,67.406149 a 8.8305254,8.8305254 0 0 0 -8.830452,8.830469 8.8305254,8.8305254 0 0 0 8.830452,8.830985 8.8305254,8.8305254 0 0 0 8.830438,-8.830985 8.8305254,8.8305254 0 0 0 -8.830438,-8.830469 z m -1.237133,3.3569 a 6.1813674,6.1813674 0 0 1 6.181494,6.181536 6.1813674,6.1813674 0 0 1 -6.181494,6.181534 6.1813674,6.1813674 0 0 1 -6.181519,-6.181534 6.1813674,6.1813674 0 0 1 6.181519,-6.181536 z"/>
       <text font-family="Poppins,sans-serif" font-weight="700" font-size="11.29" fill="#f94562" x="107" y="79.47">consulting</text>
@@ -523,7 +537,7 @@
   <div class="ring ring-3"></div>
 
   <div class="hero-logo-wrap">
-    <svg viewBox="34 63 145 25" xmlns="http://www.w3.org/2000/svg" style="height:72px;width:auto;overflow:visible;filter:drop-shadow(0 0 20px rgba(255,50,93,.5));">
+    <svg class="hero-logo-svg" viewBox="34 63 145 25" xmlns="http://www.w3.org/2000/svg">
       <text font-family="Poppins,sans-serif" font-weight="700" font-size="11.29" fill="#f94562" x="37" y="79.47">aldeota</text>
       <path fill="#f94562" d="m 94.994742,67.406149 a 8.8305254,8.8305254 0 0 0 -8.830452,8.830469 8.8305254,8.8305254 0 0 0 8.830452,8.830985 8.8305254,8.8305254 0 0 0 8.830438,-8.830985 8.8305254,8.8305254 0 0 0 -8.830438,-8.830469 z m -1.237133,3.3569 a 6.1813674,6.1813674 0 0 1 6.181494,6.181536 6.1813674,6.1813674 0 0 1 -6.181494,6.181534 6.1813674,6.1813674 0 0 1 -6.181519,-6.181534 6.1813674,6.1813674 0 0 1 6.181519,-6.181536 z"/>
       <text font-family="Poppins,sans-serif" font-weight="700" font-size="11.29" fill="#f94562" x="107" y="79.47">consulting</text>
