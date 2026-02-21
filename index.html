@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aldeota Consulting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;900&family=Montserrat:wght@300;400;500&family=Poppins:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink:       #ff325d;
+      --purple-dark:#2d185c;
+      --purple-mid: #412384;
+      --pink-light: #ff6585;
+      --red:        #fe0035;
+      --white:      #fcfcfc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--purple-dark);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Background mesh ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 10% 20%, rgba(65,35,132,.55) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 90% 80%, rgba(255,50,93,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(45,24,92,1) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.4rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(14px);
+      background: rgba(45,24,92,.45);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      text-decoration: none;
+    }
+
+    .nav-logo svg { height: 34px; width: auto; }
+
+    .nav-brand {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--pink);
+      letter-spacing: .02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(252,252,252,.65);
+      font-size: .82rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: color .25s;
+    }
+    .nav-links a:hover { color: var(--pink-light); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--pink), var(--red));
+      color: var(--white) !important;
+      padding: .5rem 1.3rem;
+      border-radius: 50px;
+      font-weight: 600 !important;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 5% 5rem;
+    }
+
+    /* floating rings */
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255,50,93,.18);
+      pointer-events: none;
+      animation: spin linear infinite;
+    }
+    .ring-1 { width: 440px; height: 440px; top: 50%; left: 50%; translate: -50% -50%; animation-duration: 28s; }
+    .ring-2 { width: 640px; height: 640px; top: 50%; left: 50%; translate: -50% -50%; animation-duration: 42s; animation-direction: reverse; border-color: rgba(65,35,132,.35); }
+    .ring-3 { width: 860px; height: 860px; top: 50%; left: 50%; translate: -50% -50%; animation-duration: 60s; border-color: rgba(255,50,93,.08); }
+    @keyframes spin { to { rotate: 360deg; } }
+
+    /* dot on ring */
+    .ring-1::after {
+      content: '';
+      position: absolute;
+      top: -5px; left: 50%;
+      translate: -50% 0;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--pink);
+      box-shadow: 0 0 14px 4px rgba(255,50,93,.6);
+    }
+
+    /* logo mark large */
+    .hero-logo-wrap {
+      position: relative;
+      margin-bottom: 2.5rem;
+      animation: fadeUp .9s ease both;
+    }
+    .hero-logo-wrap svg { height: 72px; width: auto; filter: drop-shadow(0 0 20px rgba(255,50,93,.5)); }
+
+    .hero-eyebrow {
+      font-size: .75rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--pink-light);
+      margin-bottom: 1.1rem;
+      animation: fadeUp .9s .1s ease both;
+    }
+
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 1.08;
+      letter-spacing: -.02em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp .9s .2s ease both;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, var(--pink-light), var(--pink), var(--red));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      max-width: 560px;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: rgba(252,252,252,.62);
+      margin-bottom: 2.8rem;
+      animation: fadeUp .9s .3s ease both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp .9s .4s ease both;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--pink), var(--red));
+      color: var(--white);
+      padding: .9rem 2.2rem;
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      text-decoration: none;
+      letter-spacing: .04em;
+      box-shadow: 0 8px 32px rgba(255,50,93,.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(255,50,93,.55); }
+
+    .btn-ghost {
+      border: 1px solid rgba(255,50,93,.45);
+      color: var(--pink-light);
+      padding: .9rem 2.2rem;
+      border-radius: 50px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: .95rem;
+      text-decoration: none;
+      letter-spacing: .04em;
+      transition: background .2s, border-color .2s;
+    }
+    .btn-ghost:hover { background: rgba(255,50,93,.1); border-color: var(--pink); }
+
+    /* ── Stats bar ── */
+    .stats {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+      padding: 3rem 5% 4rem;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: 2.4rem;
+      background: linear-gradient(135deg, var(--pink-light), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label {
+      font-size: .75rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(252,252,252,.45);
+      margin-top: .3rem;
+    }
+
+    /* ── Services ── */
+    .services {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 5% 6rem;
+      text-align: center;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--pink);
+      border: 1px solid rgba(255,50,93,.3);
+      padding: .35rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.2rem;
+    }
+
+    .services h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 3.5rem;
+      letter-spacing: -.01em;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: rgba(65,35,132,.22);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px;
+      padding: 2.2rem 1.8rem;
+      text-align: left;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+      backdrop-filter: blur(8px);
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,50,93,.35);
+      box-shadow: 0 20px 50px rgba(255,50,93,.12);
+    }
+
+    .card-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(255,50,93,.25), rgba(254,0,53,.15));
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.3rem;
+      font-size: 1.4rem;
+    }
+
+    .card h3 {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: .6rem;
+    }
+
+    .card p {
+      font-size: .85rem;
+      color: rgba(252,252,252,.52);
+      line-height: 1.7;
+    }
+
+    /* ── Pillars ── */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+      max-width: 1150px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .pillar {
+      background: rgba(65,35,132,.22);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--pink), var(--red));
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .pillar:hover { transform: translateY(-6px); border-color: rgba(255,50,93,.3); box-shadow: 0 24px 60px rgba(255,50,93,.12); }
+    .pillar:hover::before { opacity: 1; }
+
+    .pillar--accent {
+      background: linear-gradient(160deg, rgba(255,50,93,.14), rgba(65,35,132,.35));
+      border-color: rgba(255,50,93,.2);
+    }
+    .pillar--accent::before { opacity: 1; }
+
+    .pillar-number {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: 3.5rem;
+      line-height: 1;
+      color: rgba(255,50,93,.12);
+      position: absolute;
+      top: 1.2rem; right: 1.5rem;
+      letter-spacing: -.04em;
+    }
+
+    .pillar-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .pillar h3 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin-bottom: .9rem;
+      line-height: 1.3;
+    }
+
+    .pillar p {
+      font-size: .87rem;
+      color: rgba(252,252,252,.58);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .pillar-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .pillar-list li {
+      font-size: .82rem;
+      color: rgba(252,252,252,.7);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .pillar-list li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      translate: 0 -50%;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--pink);
+    }
+
+    /* ── CTA section ── */
+    .cta-section {
+      position: relative;
+      z-index: 1;
+      margin: 0 5% 5rem;
+      border-radius: 28px;
+      padding: 4.5rem 3rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255,50,93,.18) 0%, rgba(65,35,132,.4) 100%);
+      border: 1px solid rgba(255,50,93,.25);
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,50,93,.2), transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .cta-section p {
+      color: rgba(252,252,252,.6);
+      margin-bottom: 2.2rem;
+      font-size: .95rem;
+      position: relative;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6rem;
+      padding: 2.5rem 5%;
+      border-top: 1px solid rgba(255,255,255,.07);
+      text-align: center;
+    }
+
+    .footer-company {
+      color: rgba(252,252,252,.55);
+      font-size: .9rem;
+      letter-spacing: .05em;
+      line-height: 1.7;
+    }
+
+    .footer-company a {
+      color: rgba(255,101,133,.7);
+      text-decoration: none;
+    }
+    .footer-company a:hover { color: var(--pink-light); }
+
+    .footer-copy {
+      color: rgba(252,252,252,.25);
+      font-size: .72rem;
+      letter-spacing: .08em;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .ring-2, .ring-3 { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB3aWR0aD0iMTM4bW0iCiAgIGhlaWdodD0iMjRtbSIKICAgdmlld0JveD0iMzcgNjQgMTM4IDI0IgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB4bWw6c3BhY2U9InByZXNlcnZlIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIxLjQuMyAoMGQxNWY3NSwgMjAyNS0xMi0yNSkiCiAgIHNvZGlwb2RpOmRvY25hbWU9ImFsZGVvdGFfbG9nb190cmFuc3BhcmVudC5zdmciCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiCiAgICAgaW5rc2NhcGU6ZG9jdW1lbnQtdW5pdHM9Im1tIgogICAgIHNob3dndWlkZXM9InRydWUiCiAgICAgaW5rc2NhcGU6em9vbT0iMC44OTg4NzA2NSIKICAgICBpbmtzY2FwZTpjeD0iMzk2LjYwODc5IgogICAgIGlua3NjYXBlOmN5PSI1NjEuMjU5ODQiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIyNTYwIgogICAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9IjEzMDAiCiAgICAgaW5rc2NhcGU6d2luZG93LXg9IjAiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9IjI1IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ibGF5ZXIxIiAvPjxkZWZzCiAgICAgaWQ9ImRlZnMxIiAvPjxnCiAgICAgaW5rc2NhcGU6bGFiZWw9IkxheWVyIDEiCiAgICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpZD0ibGF5ZXIxIj48dGV4dAogICAgICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zdHJldGNoOm5vcm1hbDtmb250LXNpemU6MTEuMjg4OXB4O2ZvbnQtZmFtaWx5OlBvcHBpbnM7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjonUG9wcGlucyBCb2xkJzt3cml0aW5nLW1vZGU6bHItdGI7ZGlyZWN0aW9uOmx0cjtmaWxsOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjAuMjY0NTgzO2ZpbGwtb3BhY2l0eTowIgogICAgICAgeD0iNDAuMDMxNzEyIgogICAgICAgeT0iOTcuNzI0NDgiCiAgICAgICBpZD0idGV4dDEiPjx0c3BhbgogICAgICAgICBzb2RpcG9kaTpyb2xlPSJsaW5lIgogICAgICAgICBpZD0idHNwYW4xIgogICAgICAgICBzdHlsZT0iZm9udC1zaXplOjExLjI4ODlweDtmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjA7c3Ryb2tlLXdpZHRoOjAuMjY0NTgzIgogICAgICAgICB4PSI0MC4wMzE3MTIiCiAgICAgICAgIHk9Ijk3LjcyNDQ4Ij5hbGRlb3RhPC90c3Bhbj48L3RleHQ+PHRleHQKICAgICAgIHhtbDpzcGFjZT0icHJlc2VydmUiCiAgICAgICBzdHlsZT0iZm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtmb250LXdlaWdodDpib2xkO2ZvbnQtc3RyZXRjaDpub3JtYWw7Zm9udC1zaXplOjExLjI4ODlweDtmb250LWZhbWlseTpQb3BwaW5zOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246J1BvcHBpbnMgQm9sZCc7d3JpdGluZy1tb2RlOmxyLXRiO2RpcmVjdGlvbjpsdHI7ZmlsbDojZjk0NTYyO2ZpbGwtb3BhY2l0eToxO3N0cm9rZS13aWR0aDowLjI2NDU4MyIKICAgICAgIHg9IjM3LjA4ODIwNyIKICAgICAgIHk9Ijc5LjQ3NDcyNCIKICAgICAgIGlkPSJ0ZXh0MiI+PHRzcGFuCiAgICAgICAgIHNvZGlwb2RpOnJvbGU9ImxpbmUiCiAgICAgICAgIGlkPSJ0c3BhbjIiCiAgICAgICAgIHN0eWxlPSJmaWxsOiNmOTQ1NjI7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlLXdpZHRoOjAuMjY0NTgzIgogICAgICAgICB4PSIzNy4wODgyMDciCiAgICAgICAgIHk9Ijc5LjQ3NDcyNCI+YWxkZW90YSAgICAgICAgICBjb25zdWx0aW5nPC90c3Bhbj48L3RleHQ+PHBhdGgKICAgICAgIGlkPSJwYXRoMyIKICAgICAgIHN0eWxlPSJmaWxsOiNmOTQ1NjI7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlLXdpZHRoOjAuMjY0NTgzIgogICAgICAgZD0ibSA5NC45OTQ3NDIsNjcuNDA2MTQ5IGEgOC44MzA1MjU0LDguODMwNTI1NCAwIDAgMCAtOC44MzA0NTIsOC44MzA0NjkgOC44MzA1MjU0LDguODMwNTI1NCAwIDAgMCA4LjgzMDQ1Miw4LjgzMDk4NSA4LjgzMDUyNTQsOC44MzA1MjU0IDAgMCAwIDguODMwNDM4LC04LjgzMDk4NSA4LjgzMDUyNTQsOC44MzA1MjU0IDAgMCAwIC04LjgzMDQzOCwtOC44MzA0NjkgeiBtIC0xLjIzNzEzMywzLjM1NjkgYSA2LjE4MTM2NzQsNi4xODEzNjc0IDAgMCAxIDYuMTgxNDk0LDYuMTgxNTM2IDYuMTgxMzY3NCw2LjE4MTM2NzQgMCAwIDEgLTYuMTgxNDk0LDYuMTgxNTM0IDYuMTgxMzY3NCw2LjE4MTM2NzQgMCAwIDEgLTYuMTgxNTE5LC02LjE4MTUzNCA2LjE4MTM2NzQsNi4xODEzNjc0IDAgMCAxIDYuMTgxNTE5LC02LjE4MTUzNiB6IiAvPjwvZz48L3N2Zz4K" alt="Aldeota Consulting" style="height:36px;width:auto;display:block;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Služby</a></li>
+    <li><a href="#o-nas">O nás</a></li>
+    <li><a href="#reference">Reference</a></li>
+    <li><a href="#" class="nav-cta">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="ring ring-1"></div>
+  <div class="ring ring-2"></div>
+  <div class="ring ring-3"></div>
+
+  <div class="hero-logo-wrap">
+    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB3aWR0aD0iMTM4bW0iCiAgIGhlaWdodD0iMjRtbSIKICAgdmlld0JveD0iMzcgNjQgMTM4IDI0IgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB4bWw6c3BhY2U9InByZXNlcnZlIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIxLjQuMyAoMGQxNWY3NSwgMjAyNS0xMi0yNSkiCiAgIHNvZGlwb2RpOmRvY25hbWU9ImFsZGVvdGFfbG9nb190cmFuc3BhcmVudC5zdmciCiAgIHhtbG5zOmlua3NjYXBlPSJodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy9uYW1lc3BhY2VzL2lua3NjYXBlIgogICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXcxIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiCiAgICAgaW5rc2NhcGU6ZG9jdW1lbnQtdW5pdHM9Im1tIgogICAgIHNob3dndWlkZXM9InRydWUiCiAgICAgaW5rc2NhcGU6em9vbT0iMC44OTg4NzA2NSIKICAgICBpbmtzY2FwZTpjeD0iMzk2LjYwODc5IgogICAgIGlua3NjYXBlOmN5PSI1NjEuMjU5ODQiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIyNTYwIgogICAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9IjEzMDAiCiAgICAgaW5rc2NhcGU6d2luZG93LXg9IjAiCiAgICAgaW5rc2NhcGU6d2luZG93LXk9IjI1IgogICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ibGF5ZXIxIiAvPjxkZWZzCiAgICAgaWQ9ImRlZnMxIiAvPjxnCiAgICAgaW5rc2NhcGU6bGFiZWw9IkxheWVyIDEiCiAgICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpZD0ibGF5ZXIxIj48dGV4dAogICAgICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zdHJldGNoOm5vcm1hbDtmb250LXNpemU6MTEuMjg4OXB4O2ZvbnQtZmFtaWx5OlBvcHBpbnM7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjonUG9wcGlucyBCb2xkJzt3cml0aW5nLW1vZGU6bHItdGI7ZGlyZWN0aW9uOmx0cjtmaWxsOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjAuMjY0NTgzO2ZpbGwtb3BhY2l0eTowIgogICAgICAgeD0iNDAuMDMxNzEyIgogICAgICAgeT0iOTcuNzI0NDgiCiAgICAgICBpZD0idGV4dDEiPjx0c3BhbgogICAgICAgICBzb2RpcG9kaTpyb2xlPSJsaW5lIgogICAgICAgICBpZD0idHNwYW4xIgogICAgICAgICBzdHlsZT0iZm9udC1zaXplOjExLjI4ODlweDtmaWxsOiMwMDAwMDA7ZmlsbC1vcGFjaXR5OjA7c3Ryb2tlLXdpZHRoOjAuMjY0NTgzIgogICAgICAgICB4PSI0MC4wMzE3MTIiCiAgICAgICAgIHk9Ijk3LjcyNDQ4Ij5hbGRlb3RhPC90c3Bhbj48L3RleHQ+PHRleHQKICAgICAgIHhtbDpzcGFjZT0icHJlc2VydmUiCiAgICAgICBzdHlsZT0iZm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtmb250LXdlaWdodDpib2xkO2ZvbnQtc3RyZXRjaDpub3JtYWw7Zm9udC1zaXplOjExLjI4ODlweDtmb250LWZhbWlseTpQb3BwaW5zOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246J1BvcHBpbnMgQm9sZCc7d3JpdGluZy1tb2RlOmxyLXRiO2RpcmVjdGlvbjpsdHI7ZmlsbDojZjk0NTYyO2ZpbGwtb3BhY2l0eToxO3N0cm9rZS13aWR0aDowLjI2NDU4MyIKICAgICAgIHg9IjM3LjA4ODIwNyIKICAgICAgIHk9Ijc5LjQ3NDcyNCIKICAgICAgIGlkPSJ0ZXh0MiI+PHRzcGFuCiAgICAgICAgIHNvZGlwb2RpOnJvbGU9ImxpbmUiCiAgICAgICAgIGlkPSJ0c3BhbjIiCiAgICAgICAgIHN0eWxlPSJmaWxsOiNmOTQ1NjI7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlLXdpZHRoOjAuMjY0NTgzIgogICAgICAgICB4PSIzNy4wODgyMDciCiAgICAgICAgIHk9Ijc5LjQ3NDcyNCI+YWxkZW90YSAgICAgICAgICBjb25zdWx0aW5nPC90c3Bhbj48L3RleHQ+PHBhdGgKICAgICAgIGlkPSJwYXRoMyIKICAgICAgIHN0eWxlPSJmaWxsOiNmOTQ1NjI7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlLXdpZHRoOjAuMjY0NTgzIgogICAgICAgZD0ibSA5NC45OTQ3NDIsNjcuNDA2MTQ5IGEgOC44MzA1MjU0LDguODMwNTI1NCAwIDAgMCAtOC44MzA0NTIsOC44MzA0NjkgOC44MzA1MjU0LDguODMwNTI1NCAwIDAgMCA4LjgzMDQ1Miw4LjgzMDk4NSA4LjgzMDUyNTQsOC44MzA1MjU0IDAgMCAwIDguODMwNDM4LC04LjgzMDk4NSA4LjgzMDUyNTQsOC44MzA1MjU0IDAgMCAwIC04LjgzMDQzOCwtOC44MzA0NjkgeiBtIC0xLjIzNzEzMywzLjM1NjkgYSA2LjE4MTM2NzQsNi4xODEzNjc0IDAgMCAxIDYuMTgxNDk0LDYuMTgxNTM2IDYuMTgxMzY3NCw2LjE4MTM2NzQgMCAwIDEgLTYuMTgxNDk0LDYuMTgxNTM0IDYuMTgxMzY3NCw2LjE4MTM2NzQgMCAwIDEgLTYuMTgxNTE5LC02LjE4MTUzNCA2LjE4MTM2NzQsNi4xODEzNjc0IDAgMCAxIDYuMTgxNTE5LC02LjE4MTUzNiB6IiAvPjwvZz48L3N2Zz4K" alt="Aldeota Consulting" style="height:72px;width:auto;filter:drop-shadow(0 0 20px rgba(255,50,93,.5));" />
+  </div>
+
+  <p class="hero-eyebrow">Regulace · Finanční trh · Projektový management · Finance</p>
+
+  <h1>Odborné poradenství<br/>pro <span>finanční instituce</span></h1>
+
+  <p class="hero-sub">
+    Nestačí mít licenci. Nestačí mít procesy. Nestačí mít plán. Pomáháme institucím působícím na finančním trhu vybudovat celek, který funguje – regulatorně čistý, procesně efektivní a ekonomicky výkonný. Od návrhu vhodného regulatorního rámce instituce přes finanční modelování a řízení projektu až po finální spuštění – děláme věci tak, aby obstály před regulátorem i před realitou trhu.
+  </p>
+
+  <div class="hero-buttons">
+    <a href="/cdn-cgi/l/email-protection#274f424b4b4867464b434248534609445d" class="btn-primary">Nezávazná konzultace</a>
+    <a href="#" class="btn-ghost">Zjistit více</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-num">15+</div>
+    <div class="stat-label">Let zkušeností</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Individuální přístup</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">EU</div>
+    <div class="stat-label">Regulatorní znalost</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services">
+  <span class="section-tag">Naše služby</span>
+  <h2>Tři oblasti, kde <span style="background:linear-gradient(135deg,#ff6585,#ff325d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">přinášíme výsledky</span></h2>
+  <div class="pillars">
+
+    <div class="pillar">
+      <div class="pillar-number">01</div>
+      <div class="pillar-icon">📋</div>
+      <h3>Regulace &amp; Kapitálový trh</h3>
+      <p>Navigujeme vás složitým regulatorním prostředím investic a kapitálového trhu. Zajišťujeme soulad s českým (ZPKT, ZISIF) i evropským (MiFID II, IFD, IFR, AIFMD, AIFMR) regulatorním rámcem — a pomáháme zejména vznikajícím obchodníkům s cennými papíry a investičním společnostem nastavit procesy tak, aby obstály před regulátory a zároveň byly schopni dělat business.</p>
+      <ul class="pillar-list">
+        <li>Regulatorní poradenství</li>
+        <li>Licenční poradenství</li>
+        <li>Zpracování a revize business modelů</li>
+        <li>Nastavení vnitřních předpisů a politik</li>
+        <li>Průběžný monitoring legislativních změn</li>
+      </ul>
+    </div>
+
+    <div class="pillar pillar--accent">
+      <div class="pillar-number">02</div>
+      <div class="pillar-icon">🎯</div>
+      <h3>Projektový &amp; Procesní management</h3>
+      <p>Řídíme projekty od prvního nápadu až po úspěšné spuštění. Zároveň analyzujeme a optimalizujeme vaše interní procesy — identifikujeme zbytečné tření a navrhujeme změny, které přinášejí měřitelné úspory a vyšší efektivitu celého týmu.</p>
+      <ul class="pillar-list">
+        <li>Řízení projektů</li>
+        <li>Mapování a optimalizace procesů</li>
+        <li>Implementace změn a change management</li>
+      </ul>
+    </div>
+
+    <div class="pillar">
+      <div class="pillar-number">03</div>
+      <div class="pillar-icon">💼</div>
+      <h3>Business model &amp; Finance</h3>
+      <p>Pomáháme zakladatelům finančních institucí přemýšlet o tom, jak vydělat peníze ještě předtím, než se pustí do náročných a drahých projektů, příp. předtím, než založí investiční fond. Navrhneme business model (nebo zpochybníme ten váš), připravíme finanční model a plán obchodní činnosti pro regulátora a přineseme pohled zvenčí tam, kde ho jen obtížně získáte.</p>
+      <ul class="pillar-list">
+        <li>Analýza a návrh business modelu</li>
+        <li>Finanční modelování a plánování</li>
+        <li>Příprava plánu obchodní činností</li>
+        <li>Strukturování investičních fondů</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- O NÁS -->
+<section class="services" id="o-nas" style="padding-bottom:2rem;">
+  <span class="section-tag">O nás</span>
+  <h2>Zkušenosti, které <span style="background:linear-gradient(135deg,#ff6585,#ff325d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">mluví za vše</span></h2>
+
+  <div style="max-width:860px;margin:0 auto;text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;">
+
+    <div>
+      <p style="font-size:1rem;line-height:1.8;color:rgba(252,252,252,.75);margin-bottom:1.4rem;">
+        Jsem <strong style="color:#fcfcfc;">Martin Oliva</strong> — odborník na investice, regulaci finančního trhu, projektový management a budování finančních institucí s více než 15 lety zkušeností v oblasti kapitálových trhů, investičních fondů a corporate finance.
+      </p>
+      <p style="font-size:1rem;line-height:1.8;color:rgba(252,252,252,.75);margin-bottom:1.4rem;">
+        Dvakrát jsem prošel celým procesem budování licencované finanční instituce od nuly — naposledy jako zakladatel a předseda představenstva <strong style="color:#fcfcfc;">Partners Securities, a.s.</strong>, kde jsem pomohl vybudovat společnost od první myšlenky přes licencování až po spuštění živého provozu jako regulovaného obchodníka s cennými papíry pod dohledem České národní banky.
+      </p>
+      <p style="font-size:1rem;line-height:1.8;color:rgba(252,252,252,.75);">
+        Předtím jsem jako spoluzakladatel a místopředseda představenstva <strong style="color:#fcfcfc;">Winstor investiční společnost a.s.</strong> pomohl ze společnosti vybudovat nejrychleji rostoucí investiční společnost na českém trhu.
+      </p>
+      <a href="https://www.linkedin.com/in/martinoliva" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.5rem;margin-top:1.5rem;color:var(--pink-light);font-size:.85rem;letter-spacing:.08em;text-decoration:none;border:1px solid rgba(255,50,93,.3);padding:.5rem 1.2rem;border-radius:50px;transition:background .2s,border-color .2s;" onmouseover="this.style.background='rgba(255,50,93,.1)';this.style.borderColor='rgba(255,50,93,.6)'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(255,50,93,.3)'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        Martin Oliva na LinkedIn
+      </a>
+    </div>
+
+    <div>
+      <p style="font-size:1rem;line-height:1.8;color:rgba(252,252,252,.75);margin-bottom:1.4rem;">
+        Sedm let jsem strávil v <strong style="color:#fcfcfc;">Patria Finance</strong> — od tradingu přes business development až po vedení týmu zodpovědného za produktový vývoj, procesní optimalizaci a projektový management včetně implementace MiFID II/MiFIR.
+      </p>
+      <p style="font-size:1rem;line-height:1.8;color:rgba(252,252,252,.75);margin-bottom:1.8rem;">
+        Vím, jak funguje regulace. Vím, jak funguje trh. A vím, jak dát dohromady ideu, tým a celý projekt tak, aby věci skutečně fungovaly — od prvního záměru po spuštění.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:.7rem;">
+        <span style="background:rgba(255,50,93,.12);border:1px solid rgba(255,50,93,.25);color:var(--pink-light);font-size:.75rem;letter-spacing:.1em;padding:.4rem 1rem;border-radius:50px;">MiFID II</span>
+        <span style="background:rgba(255,50,93,.12);border:1px solid rgba(255,50,93,.25);color:var(--pink-light);font-size:.75rem;letter-spacing:.1em;padding:.4rem 1rem;border-radius:50px;">MiFIR</span>
+        <span style="background:rgba(255,50,93,.12);border:1px solid rgba(255,50,93,.25);color:var(--pink-light);font-size:.75rem;letter-spacing:.1em;padding:.4rem 1rem;border-radius:50px;">IFD</span>
+        <span style="background:rgba(255,50,93,.12);border:1px solid rgba(255,50,93,.25);color:var(--pink-light);font-size:.75rem;letter-spacing:.1em;padding:.4rem 1rem;border-radius:50px;">IFR</span>
+        <span style="background:rgba(255,50,93,.12);border:1px solid rgba(255,50,93,.25);color:var(--pink-light);font-size:.75rem;letter-spacing:.1em;padding:.4rem 1rem;border-radius:50px;">AIFMR</span>
+        <span style="background:rgba(255,50,93,.12);border:1px solid rgba(255,50,93,.25);color:var(--pink-light);font-size:.75rem;letter-spacing:.1em;padding:.4rem 1rem;border-radius:50px;">AIFMD</span>
+        <span style="background:rgba(255,50,93,.12);border:1px solid rgba(255,50,93,.25);color:var(--pink-light);font-size:.75rem;letter-spacing:.1em;padding:.4rem 1rem;border-radius:50px;">Investiční fondy</span>
+        <span style="background:rgba(255,50,93,.12);border:1px solid rgba(255,50,93,.25);color:var(--pink-light);font-size:.75rem;letter-spacing:.1em;padding:.4rem 1rem;border-radius:50px;">Corporate Finance</span>
+        <span style="background:rgba(255,50,93,.12);border:1px solid rgba(255,50,93,.25);color:var(--pink-light);font-size:.75rem;letter-spacing:.1em;padding:.4rem 1rem;border-radius:50px;">Kapitálový trh</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- REFERENCE -->
+<section class="services" id="reference">
+  <span class="section-tag">Reference</span>
+  <h2>Projekty, na kterých <span style="background:linear-gradient(135deg,#ff6585,#ff325d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">jsme se podíleli</span></h2>
+  <div class="cards" style="max-width:1100px;grid-template-columns:repeat(auto-fill, minmax(200px, 1fr))">
+
+    <div class="card">
+      <div class="card-icon">🏛️</div>
+      <h3>Investiční společnost</h3>
+      <p>Kompletní vybudování investiční společnosti spravující fondy kvalifikovaných investorů a speciální fondy.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🏦</div>
+      <h3>Obchodník s cennými papíry</h3>
+      <p>Vybudování obchodníka s cennými papíry pro významnou finanční skupinu působící v České republice a na Slovensku.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <h3>Regulatorní poradenství &amp; projektový management</h3>
+      <p>Dlouhodobá spolupráce s jedním z největších obchodníků s cennými papíry na českém kapitálovém trhu v oblasti regulace a řízení projektů.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">⚙️</div>
+      <h3>Regulatorní &amp; procesní poradenství, projektový management</h3>
+      <p>Regulatorní a procesní poradenství a projektový management při budování obchodníka s cennými papíry pro významnou českou investiční společnost.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">💼</div>
+      <h3>Fondy kvalifikovaných investorů</h3>
+      <p>Poradenství při založení a strukturování fondů kvalifikovaných investorů.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Připraveni dosáhnout vašich cílů?</h2>
+  <p>Pojďme si promluvit o tom, kde chcete být — a společně sestavíme strategii, jak se tam dostat.</p>
+  <a href="/cdn-cgi/l/email-protection#b3dbd6dfdfdcf3d2dfd7d6dcc7d29dd0c9" class="btn-primary">Domluvit konzultaci</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-company">
+    Aldeota consulting s.r.o. &nbsp;·&nbsp; Rybná 716/24, 110 00 Praha &nbsp;·&nbsp; IČO: 172 45 770 &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection#96fef3fafaf9d6f7faf2f3f9e2f7b8f5ec"><span class="__cf_email__" data-
